@@ -1,12 +1,12 @@
 {
-  "dependencies": {
-    "redux": "^5.0.0"
-  },
   "devDependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
   "scripts": {
     "basics": "ts-node 01-basics/index.ts"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1"
   }
 }

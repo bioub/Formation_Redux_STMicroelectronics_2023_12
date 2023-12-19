@@ -40,3 +40,18 @@ Dans `src/index.ts` transformer dans le `.subscribe` le `console.log` par :
 ```
 console.log(todosCompletedSelector(store.getState()));
 ```
+
+## Redux Toolkit
+
+Désinstaller `redux`
+
+Installer `@reduxjs/toolkit`
+
+Dans `src/index.ts` remplacer `legacy_createStore` par `configureStore` de Redux Toolkit
+
+Dans `src/actions.ts` remplacer les actions creators écrit manuellement par des actions creators générés avec `createAction`
+
+Dans `src/reducers.ts` remplacer le reducer par `createReducer`, simplifier le code immuable en l'écrivant de façon muable et laisser Immer faire la transformation.
+
+
+
