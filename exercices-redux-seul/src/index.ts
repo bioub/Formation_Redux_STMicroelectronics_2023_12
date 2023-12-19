@@ -1,18 +1,14 @@
 import { legacy_createStore } from 'redux';
 import { reducer } from './store/reducers';
+import { addTodo, updateNewTodo } from './store/actions';
+import { todosCompletedSelector } from './store/selectors';
 
 const store = legacy_createStore(reducer);
 
 store.subscribe(() => {
-  console.log(store.getState());
+  console.log(todosCompletedSelector(store.getState()));
 })
 
-store.dispatch({
-  type: 'ADD_TODO',
-  payload: { id: Math.random(), title: 'XYZ', completed: false },
-});
+store.dispatch(updateNewTodo('XYZ123'));
 
-store.dispatch({
-  type: 'UPDATE_NEW_TODO',
-  payload: 'XYZ123',
-});
+store.dispatch(addTodo({ id: Math.random(), title: 'XYZ', completed: true }));
