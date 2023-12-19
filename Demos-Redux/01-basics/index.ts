@@ -23,6 +23,8 @@ store.subscribe(() => {
   console.log('state', store.getState());
 });
 
-store.dispatch({ type: 'INCREMENT_LIKES' });
+store.dispatch({ type: 'INCREMENT_LJKES' });
 store.dispatch({ type: 'UPDATE_NAME', newName: 'Toto' });
 store.dispatch({ type: 'INCREMENT_LIKES' });
+
+
