@@ -1,5 +1,4 @@
-import { reducer } from './store/reducers';
-import { addTodo, updateNewTodo } from './store/actions';
+import { addTodo, updateNewTodo , reducer } from './store/slices';
 import { todosCompletedSelector } from './store/selectors';
 import { configureStore } from '@reduxjs/toolkit';
 

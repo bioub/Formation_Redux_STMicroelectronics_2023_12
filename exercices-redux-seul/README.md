@@ -54,7 +54,7 @@ Dans `src/actions.ts` remplacer les actions creators écrit manuellement par des
 Dans `src/reducers.ts` remplacer le reducer par `createReducer`, simplifier le code immuable en l'écrivant de façon muable et laisser Immer faire la transformation.
 
 
-# Slices
+## Slices
 
 Regrouper `src/actions.ts` et `src/reducers.ts` dans un seul fichier `src/slices.ts`
 
