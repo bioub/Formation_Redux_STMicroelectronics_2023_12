@@ -1,18 +1,14 @@
+import { PayloadAction, createAction, nanoid } from "@reduxjs/toolkit";
 import { Todo } from "./types";
 
-export const ADD_TODO = 'ADD_TODO';
-export const UPDATE_NEW_TODO = 'UPDATE_NEW_TODO';
 
-export function addTodo(payload: Todo) {
+export const addTodo = createAction('todos/addTodo', (title: string) => {
   return {
-    type: ADD_TODO,
-    payload
-  }
-} 
-
-export function updateNewTodo(payload: string) {
-  return {
-    type: UPDATE_NEW_TODO,
-    payload
-  }
-} 
+    payload: {
+      id: Math.random(),
+      title,
+      completed: false,
+    },
+  };
+});
+export const updateNewTodo = createAction<string>('todos/updateNewTodo');

@@ -54,4 +54,10 @@ Dans `src/actions.ts` remplacer les actions creators écrit manuellement par des
 Dans `src/reducers.ts` remplacer le reducer par `createReducer`, simplifier le code immuable en l'écrivant de façon muable et laisser Immer faire la transformation.
 
 
+# Slices
 
+Regrouper `src/actions.ts` et `src/reducers.ts` dans un seul fichier `src/slices.ts`
+
+Ne créer qu'un slice `todosSlice` pour traiter la clé `todos` du State.
+
+Pour `addTodo` il faudra continuer d'utiliser `createAction` (à cause de `prepareAction`) et la traiter dans `extraReducers` de la slide
