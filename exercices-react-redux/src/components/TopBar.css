@@ -1,0 +1,16 @@
+.TopBar {
+  background-color: lightblue;
+  display: flex;
+  padding: 0.5em;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.TopBar h1 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.TopBar a {
+  color: black;
+}

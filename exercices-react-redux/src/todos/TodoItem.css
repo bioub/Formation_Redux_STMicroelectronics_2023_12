@@ -1,0 +1,17 @@
+.TodoItem {
+  margin: 5px 0;
+  display: flex;
+  padding: 5px;
+}
+
+.TodoItem span {
+  flex: 1;
+}
+
+.TodoItem button {
+  margin-left: 5px;
+}
+
+.TodoItem:nth-child(odd) {
+  background-color: #fafafa;
+}

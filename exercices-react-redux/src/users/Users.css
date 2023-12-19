@@ -1,0 +1,13 @@
+.Users {
+  display: flex;
+  margin: 5px;
+  gap: 5px;
+}
+
+.UsersList div {
+  margin: 5px 0;
+}
+
+.UsersList a {
+  color: black;
+}
