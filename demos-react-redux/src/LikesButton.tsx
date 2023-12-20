@@ -2,20 +2,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { likesSelector } from './store/selectors';
 import { incrementLikes } from './store/slices';
 
-function LikesButton() {
-  // const [count, setCount] = useState(0);
-  const count = useSelector(likesSelector);
-  const dispatch = useDispatch();
+type Props = {
+  count: number;
+  onIncrement(): void;
+}
 
-  function setCount() {
-    dispatch(incrementLikes());
-  }
-
+export function LikesButton({ count, onIncrement }: Props) {
   console.log('LikesButton');
 
   return (
-    <button onClick={() => setCount()}>count is {count}</button>
+    <button onClick={() => onIncrement()}>count is {count}</button>
   );
 }
 
-export default LikesButton;
+function LikesButtonContainer() {
+  const count = useSelector(likesSelector);
+  const dispatch = useDispatch();
+
+  function handleIncrement() {
+    dispatch(incrementLikes())
+  }
+
+  return <LikesButton count={count} onIncrement={handleIncrement} />
+}
+
+export default LikesButtonContainer;

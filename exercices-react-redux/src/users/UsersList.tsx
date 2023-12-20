@@ -1,19 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getAllUsers } from './api';
-import { User } from './types';
+import { useDispatch, useSelector } from 'react-redux';
+import { usersSelector } from '../store/selectors';
+import { fetchUsers } from '../store/slices';
+import { AppDispatch } from '../store';
 
 export default function UsersList() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
+  const { items: users, loading, errorMessage } = useSelector(usersSelector);
+
+  const dispatch = useDispatch<AppDispatch>();
+  // const [users, setUsers] = useState<User[]>([]);
+  // const [loading, setLoading] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    getAllUsers()
-      .then((data) => setUsers(data))
-      .catch((err) => setErrorMessage(err.message))
-      .finally(() => setLoading(false));
+    dispatch(fetchUsers());
   }, [getAllUsers]);
 
   return (
