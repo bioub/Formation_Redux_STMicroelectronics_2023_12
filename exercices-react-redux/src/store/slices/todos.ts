@@ -12,6 +12,7 @@ const initialState: TodosSlice = {
   newTodo: 'XYZ',
   items: [],
   loading: false,
+  filter: 'All',
 };
 
 export const addTodo = createAction('todos/addTodo', (title: string) => {
@@ -39,6 +40,9 @@ export const todosSlice = createSlice({
       const index = state.items.findIndex((it) => it.id === action.payload.id);
       state.items.splice(index, 1);
     },
+    updateFilter(state, action: PayloadAction<string>) {
+      state.filter = action.payload;
+    }
   },
   extraReducers(builder) {
     builder
@@ -59,4 +63,4 @@ export const todosSlice = createSlice({
   },
 });
 
-export const { updateNewTodo, deleteTodo } = todosSlice.actions;
+export const { updateNewTodo, deleteTodo, updateFilter } = todosSlice.actions;

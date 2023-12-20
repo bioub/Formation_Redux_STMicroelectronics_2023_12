@@ -3,18 +3,22 @@ import TodoList from './TodoList';
 import { Todo } from './types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  filterSelector,
   itemsSelector,
   loadingSelector,
   newTodoSelector,
+  todosCompletedSelector,
 } from '../store/selectors';
-import { addTodo, deleteTodo, fetchTodos, updateNewTodo } from '../store/slices/todos';
+import { addTodo, deleteTodo, fetchTodos, updateFilter, updateNewTodo } from '../store/slices/todos';
 import { useEffect } from 'react';
 import { AppDispatch } from '../store';
+import { TodosFooter } from './TodoFooter';
 
 export default function Todos() {
   const newTodo = useSelector(newTodoSelector);
   const items = useSelector(itemsSelector);
   const loading = useSelector(loadingSelector);
+  const filter = useSelector(filterSelector);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -53,6 +57,7 @@ export default function Todos() {
       ) : (
         <TodoList items={items} onDeleteItem={handleDeleteTodo} />
       )}
+      <TodosFooter filter={filter} onFilterChange={(newFilter) => { dispatch(updateFilter(newFilter)) }} />
     </div>
   );
 }

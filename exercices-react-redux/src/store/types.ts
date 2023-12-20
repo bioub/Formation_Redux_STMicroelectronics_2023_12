@@ -5,6 +5,7 @@ export type TodosSlice = {
   newTodo: string;
   items: Todo[];
   loading: boolean;
+  filter: string;
 };
 
 export type UsersSlice = {
