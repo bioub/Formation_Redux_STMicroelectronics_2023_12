@@ -5,7 +5,6 @@ const initialState = {
   likes: 10,
 };
 
-
 function reducer(state = initialState, action: UnknownAction) {
   switch (action.type) {
     case 'INCREMENT_LIKES':

@@ -22,7 +22,7 @@ export const nameSlice = createSlice({
 
 export const likesSlice = createSlice({
   initialState: initialState.likes,
-  name: 'likes',
+  name: 'likes', // likes/incrementLikes
   reducers: {
     incrementLikes(state, action: PayloadAction<undefined>) {
       return state + 1;

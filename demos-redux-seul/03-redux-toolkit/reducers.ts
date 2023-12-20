@@ -1,4 +1,4 @@
-import { combineReducers, createReducer } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
 import { incrementLikes, updateName } from './actions';
 import { RootState } from './types';
 
@@ -7,28 +7,12 @@ const initialState: RootState = {
   likes: 10,
 };
 
-export const nameReducer = createReducer(initialState.name, (builder) => {
-  builder
-    .addCase(updateName, (state, action) => {
-      return action.payload;
-    });
-});
-
-
-export const likesReducer = createReducer(initialState.likes, (builder) => {
+export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(incrementLikes, (state) => {
-      return state + 1;
+      state.likes++;
+    })
+    .addCase(updateName, (state, action) => {
+      state.name = action.payload;
     });
 });
-
-// export const reducer = combineReducers({
-//   name: nameReducer,
-//   likes: likesReducer,
-// })
-
-// RTK appele déjà combineReducers au premier niveau :
-export const reducer = {
-  name: nameReducer,
-  likes: likesReducer,
-};

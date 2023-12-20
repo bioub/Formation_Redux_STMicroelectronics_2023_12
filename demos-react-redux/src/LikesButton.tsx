@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { likesSelector } from './store/selectors';
 import { incrementLikes } from './store/slices';
@@ -11,6 +10,8 @@ function LikesButton() {
   function setCount() {
     dispatch(incrementLikes());
   }
+
+  console.log('LikesButton');
 
   return (
     <button onClick={() => setCount()}>count is {count}</button>
