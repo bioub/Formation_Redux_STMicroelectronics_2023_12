@@ -1,19 +1,20 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { Todo } from '../todos/types';
 import { RootState, UsersSlice } from './types';
 
 export function newTodoSelector(state: RootState): string {
-  return state.todos.newTodo;
+  return state.todos.present.newTodo;
 }
 
 export function filterSelector(state: RootState): string {
-  return state.todos.filter;
+  return state.todos.present.filter;
 }
 
 
 export const itemsSelector = createSelector(
-  [filterSelector, (state: RootState) => state.todos.items],
+  [filterSelector, (state: RootState) => state.todos.present.items],
   (filter, items) => {
+    console.log('itemsSelector called');
+
     switch (filter) {
       case 'Active':
         return items.filter((t) => !t.completed);
@@ -42,11 +43,11 @@ export const itemsSelector = createSelector(
 // }
 
 export function loadingSelector(state: RootState): boolean {
-  return state.todos.loading;
+  return state.todos.present.loading;
 }
 
 export function usersSelector(state: RootState): UsersSlice {
-  return state.users;
+  return state.users.present;
 }
 
 // export function todosCompletedSelector(state: RootState): Todo[] {

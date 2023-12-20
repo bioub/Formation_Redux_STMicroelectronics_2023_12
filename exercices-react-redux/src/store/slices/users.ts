@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { UsersSlice } from '../types';
 import { User } from '../../users/types';
 import { getAllUsers } from '../../users/api';
@@ -8,6 +8,10 @@ const initialState: UsersSlice = {
   loading: false,
   errorMessage: '',
 };
+
+export const undoUsers = createAction('users/undo');
+export const redoUsers = createAction('users/redo');
+
 
 export const fetchUsers = createAsyncThunk<User[]>('users/fetchUsers', () =>
   getAllUsers()

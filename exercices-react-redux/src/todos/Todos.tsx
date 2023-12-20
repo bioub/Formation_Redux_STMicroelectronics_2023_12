@@ -7,9 +7,8 @@ import {
   itemsSelector,
   loadingSelector,
   newTodoSelector,
-  todosCompletedSelector,
 } from '../store/selectors';
-import { addTodo, deleteTodo, fetchTodos, updateFilter, updateNewTodo } from '../store/slices/todos';
+import { addTodo, deleteTodo, fetchTodos, redoTodos, undoTodos, updateFilter, updateNewTodo } from '../store/slices/todos';
 import { useEffect } from 'react';
 import { AppDispatch } from '../store';
 import { TodosFooter } from './TodoFooter';
@@ -45,6 +44,14 @@ export default function Todos() {
     // setItems(items.filter((t) => t.id !== todo.id));
   }
 
+  function handleUndo() {
+    dispatch(undoTodos());
+  }
+
+  function handleRedo() {
+    dispatch(redoTodos());
+  }
+
   return (
     <div className="Todos">
       <TodoForm
@@ -57,7 +64,7 @@ export default function Todos() {
       ) : (
         <TodoList items={items} onDeleteItem={handleDeleteTodo} />
       )}
-      <TodosFooter filter={filter} onFilterChange={(newFilter) => { dispatch(updateFilter(newFilter)) }} />
+      <TodosFooter filter={filter} onFilterChange={(newFilter) => { dispatch(updateFilter(newFilter)) }} onUndo={handleUndo} onRedo={handleRedo} />
     </div>
   );
 }

@@ -15,6 +15,9 @@ const initialState: TodosSlice = {
   filter: 'All',
 };
 
+export const undoTodos = createAction('todos/undo');
+export const redoTodos = createAction('todos/redo');
+
 export const addTodo = createAction('todos/addTodo', (title: string) => {
   return {
     payload: {
@@ -50,14 +53,14 @@ export const todosSlice = createSlice({
         state.items.push(action.payload);
         state.newTodo = '';
       })
-      .addCase(fetchTodos.pending, (state, action) => {
+      .addCase(fetchTodos.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchTodos.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
       })
-      .addCase(fetchTodos.rejected, (state, action) => {
+      .addCase(fetchTodos.rejected, (state) => {
         state.loading = false;
       });
   },
