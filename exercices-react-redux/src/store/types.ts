@@ -1,19 +1,19 @@
 import { Todo } from "../todos/types";
 import { User } from "../users/types";
 
-export type TodoSlice = {
+export type TodosSlice = {
   newTodo: string;
   items: Todo[];
   loading: boolean;
 };
 
-export type UserSlice = {
+export type UsersSlice = {
   items: User[],
   loading: boolean;
   errorMessage: string;
 }
 
 export type RootState = {
-  todos: TodoSlice;
-  users: UserSlice;
+  todos: TodosSlice;
+  users: UsersSlice;
 };

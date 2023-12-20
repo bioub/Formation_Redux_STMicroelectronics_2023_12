@@ -2,13 +2,24 @@ import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import { Todo } from './types';
 import { useDispatch, useSelector } from 'react-redux';
-import { itemsSelector, newTodoSelector } from '../store/selectors';
-import { addTodo, deleteTodo, updateNewTodo } from '../store/slices';
+import {
+  itemsSelector,
+  loadingSelector,
+  newTodoSelector,
+} from '../store/selectors';
+import { addTodo, deleteTodo, fetchTodos, updateNewTodo } from '../store/slices/todos';
+import { useEffect } from 'react';
+import { AppDispatch } from '../store';
 
 export default function Todos() {
   const newTodo = useSelector(newTodoSelector);
   const items = useSelector(itemsSelector);
-  const dispatch = useDispatch();
+  const loading = useSelector(loadingSelector);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchTodos())
+  }, []);
 
   function setNewTodo(value: string) {
     dispatch(updateNewTodo(value));
@@ -27,13 +38,21 @@ export default function Todos() {
 
   function handleDeleteTodo(todo: Todo) {
     dispatch(deleteTodo(todo));
-   // setItems(items.filter((t) => t.id !== todo.id));
+    // setItems(items.filter((t) => t.id !== todo.id));
   }
 
   return (
     <div className="Todos">
-      <TodoForm newTodoInput={newTodo} onNewTodoChange={setNewTodo} onNewTodoAdd={handleNewTodo} />
-      <TodoList items={items} onDeleteItem={handleDeleteTodo}  />
+      <TodoForm
+        newTodoInput={newTodo}
+        onNewTodoChange={setNewTodo}
+        onNewTodoAdd={handleNewTodo}
+      />
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <TodoList items={items} onDeleteItem={handleDeleteTodo} />
+      )}
     </div>
   );
 }

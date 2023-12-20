@@ -1,23 +1,25 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { getAllUsers } from './api';
 import { useDispatch, useSelector } from 'react-redux';
-import { usersSelector } from '../store/selectors';
-import { fetchUsers } from '../store/slices';
+import { fetchUsers } from '../store/slices/users';
 import { AppDispatch } from '../store';
+import { UsersSlice } from '../store/types';
+import { usersSelector } from '../store/selectors';
 
-export default function UsersList() {
-  const { items: users, loading, errorMessage } = useSelector(usersSelector);
+type Props = UsersSlice & {
+  onInit(): void;
+};
 
-  const dispatch = useDispatch<AppDispatch>();
-  // const [users, setUsers] = useState<User[]>([]);
-  // const [loading, setLoading] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState('');
-
+export function UsersList({
+  items: users,
+  loading,
+  errorMessage,
+  onInit,
+}: Props) {
   useEffect(() => {
-    dispatch(fetchUsers());
-  }, [getAllUsers]);
+    onInit();
+  }, []);
 
   return (
     <div className="UsersList">
@@ -35,4 +37,15 @@ export default function UsersList() {
       )}
     </div>
   );
+}
+
+export default function UsersListContainer() {
+  const dispatch = useDispatch<AppDispatch>();
+  const usersProps = useSelector(usersSelector);
+
+  function handleInit() {
+    dispatch(fetchUsers());
+  }
+
+  return <UsersList onInit={handleInit} {...usersProps} />;
 }
